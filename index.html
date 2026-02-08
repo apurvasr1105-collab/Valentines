@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>For Anwesha 💜</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    .card {
+      background: #ffffffee;
+      padding: 28px;
+      border-radius: 24px;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      max-width: 350px;
+      animation: pop 0.8s ease;
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.7); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 4px solid #e0c3fc;
+    }
+
+    h1 {
+      color: #7b2cbf;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 17px;
+      margin-bottom: 22px;
+    }
+
+    button {
+      padding: 12px 24px;
+      font-size: 16px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      margin: 6px;
+      transition: transform 0.25s ease;
+    }
+
+    #yes {
+      background: linear-gradient(135deg, #ff758f, #ff4d6d);
+      color: white;
+    }
+
+    #no {
+      background: #e0c3fc;
+      color: #333;
+    }
+
+    .heart {
+      position: fixed;
+      bottom: -10px;
+      font-size: 22px;
+      animation: float 5s linear infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-110vh); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <audio id="music" loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_29c39e7e3b.mp3">
+  </audio>
+
+  <div class="card">
+    <img src="anwesha.jpg" alt="Anwesha">
+    <h1>Anwesha 💜</h1>
+    <p>
+      Every smile of yours makes my day brighter ✨<br>
+      Will you be my Valentine? 🌸
+    </p>
+    <button id="yes" onclick="yesClick()">Yes 💖</button>
+    <button id="no" onclick="noClick()" onmouseover="moveNo()">No 😳</button>
+  </div>
+
+  <script>
+    const music = document.getElementById("music");
+    const yesBtn = document.getElementById("yes");
+    let yesScale = 1;
+
+    function yesClick() {
+      music.play();
+
+      document.body.innerHTML = `
+        <div class="card">
+          <h1>Hehe 💘</h1>
+          <p>
+            I knew it 😌💜<br><br>
+            Happy Valentine’s Day, Anwesha 🌷<br>
+            — From Apurva ✨
+          </p>
+        </div>
+      `;
+      hearts();
+    }
+
+    function noClick() {
+      yesScale += 0.25;
+      yesBtn.style.transform = "scale(" + yesScale + ")";
+    }
+
+    function moveNo() {
+      const btn = document.getElementById("no");
+      btn.style.position = "absolute";
+      btn.style.left = Math.random() * 80 + "vw";
+      btn.style.top = Math.random() * 80 + "vh";
+    }
+
+    function hearts() {
+      setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.innerHTML = ["💜","💖","✨","🌸"][Math.floor(Math.random()*4)];
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 5000);
+      }, 280);
+    }
+  </script>
+
+</body>
+</html>
